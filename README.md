@@ -1,17 +1,17 @@
 # Kus Kus Klient
 
-Kus Kus Klient is a Fabric utility client base for Minecraft `1.21.11` built around a modular architecture, custom ClickGUI, HUD editor, chat commands, profiles, named configs, macros, and an addon API.
+Kus Kus Klient is a Fabric utility client base for Minecraft `1.21.11` with a modular architecture, custom ClickGUI, HUD editor, profile snapshots, and a lightweight addon API.
 
 License: `GPL-3.0`
 
 ## Features
 
-- Modular client architecture with separate managers for modules, commands, HUD, macros, friends, profiles, and addons
-- ClickGUI and HUD editor with persistent settings
-- Named config snapshots and profile snapshots
-- Chat command system with search, binds, macros, and profile management
+- Modular client architecture with separate managers for modules, commands, HUD, friends, profiles, macros, configs, and addons
+- ClickGUI with persistent settings and theme storage
+- HUD editor with draggable elements and saved layout
+- Profile snapshot system for saving and loading full client state
 - Addon API with lifecycle hooks and automatic Fabric entrypoint loading
-- Crash-safe config handling with backup/corruption recovery for JSON files
+- Safer JSON config handling with backup/corruption recovery
 
 ## Requirements
 
@@ -59,12 +59,11 @@ Live client data is stored in `.minecraft/kuskusklient/`.
 - `hud.json`
 - `macros.json`
 - `modules/*.json`
-- `configs/<name>/...`
 - `profiles/<name>/...`
 - `addons/<addon-id>/...`
 - `crashes/*.txt`
 
-Named configs and profiles now store full snapshots instead of only `config.json`, so module states, HUD positions, friends, macros, and addon data can move together.
+The codebase also contains support for full config snapshots, but the default public command surface currently exposes profile snapshots through `.config profile ...`.
 
 ## Adding Modules
 
@@ -81,7 +80,7 @@ public class MyModule extends Module {
 
 ## Addon API
 
-The client now supports Fabric entrypoint discovery for addons with the entrypoint key `kuskusklient-addon`.
+The client supports Fabric entrypoint discovery for addons with the entrypoint key `kuskusklient-addon`.
 
 Minimal addon example:
 
