@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "me.kuskus.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "ChatInputMixin",
+    "KeyboardMixin",
+    "GameRendererMixin",
+    "ClientPlayerEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

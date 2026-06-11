@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "kuskusklient",
+  "version": "${version}",
+  "name": "Kus Kus Klient",
+  "description": "Minecraft client by Zyrixel.",
+  "authors": [
+    "Zyrixel"
+  ],
+  "contact": {},
+  "license": "GPL-3.0",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "me.kuskus.KusKusKlient"
+    ]
+  },
+  "mixins": [
+    "kuskusklient.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.2",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
