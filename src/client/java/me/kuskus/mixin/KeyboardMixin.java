@@ -19,7 +19,7 @@ import java.util.Optional;
 @Mixin(Keyboard.class)
 public class KeyboardMixin {
     @Inject(method = "onKey", at = @At("HEAD"), cancellable = true)
-    private void kuskus$onKey(long window, int key, KeyInput input, CallbackInfo ci) {
+    private void kuskus$onKey(long window, int action, KeyInput input, CallbackInfo ci) {
         int keyCode = input.key();
         int scancode = input.scancode();
         int modifiers = input.modifiers();
@@ -32,7 +32,10 @@ public class KeyboardMixin {
             return;
         }
 
-        KusKusKlient.EVENTS.post(new KeyEvent(window, keyCode, scancode, GLFW.GLFW_PRESS, modifiers));
+        KusKusKlient.EVENTS.post(new KeyEvent(window, keyCode, scancode, action, modifiers));
+        if (action != GLFW.GLFW_PRESS) {
+            return;
+        }
 
         if (keyCode == GLFW.GLFW_KEY_ESCAPE && client.currentScreen instanceof HudEditorScreen) {
             client.currentScreen.close();
